@@ -1,0 +1,57 @@
+[project]
+authors = [{name = "Edward Toroshchin", email = "dev@hades.name"}]
+dependencies = []
+dynamic = ["version", "description"]
+license = "MIT"
+license-files = ["LICENSE"]
+name = "goodtime"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[build-system]
+requires = ["flit_core >=3.11,<4"]
+build-backend = "flit_core.buildapi"
+
+[project.urls]
+Home = "https://github.com/hades/goodtime"
+
+[dependency-groups]
+dev = [
+  "mypy>=1.19.1",
+  "pytest>=9.0.2",
+  "pytest-cov>=7.0.0",
+  "ruff>=0.14.14",
+]
+
+[tool.mypy]
+strict = true
+
+[tool.ruff]
+line-length = 120
+indent-width = 2
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "COM812",  # missing-trailing-comma
+  "COM819",  # prohibited-trailing-comma
+  "D203",    # incorrect-blank-line-before-class
+  "D213",    # multi-line-summary-second-line
+  "TRY003",  # raise-vanilla-args
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+  "ANN",
+  "D",
+  "PLR",
+  "S",
+]
+
+[tool.ruff.lint.flake8-annotations]
+mypy-init-return = true
