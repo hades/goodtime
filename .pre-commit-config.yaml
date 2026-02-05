@@ -1,0 +1,41 @@
+# schema: pre-commit-config
+#
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    -   id: check-added-large-files
+    -   id: check-merge-conflict
+    -   id: check-toml
+    -   id: check-yaml
+        exclude: .*[.]schema[.]yaml$
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+- repo: https://github.com/hades/oopsallyaml
+  rev: v0.1.0
+  hooks:
+    - id: oopsallyaml
+      exclude: .*[.]schema[.]yaml$
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.9.9
+  hooks:
+    - id: ruff
+      args: [ --fix ]
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.4.1
+  hooks:
+  - id: codespell
+- repo: local
+  hooks:
+    - id: mypy
+      name: Checking Python typings with mypy
+      entry: uv run mypy
+      language: system
+      pass_filenames: true
+      types: [python]
+    - id: pytest
+      name: Running unit tests
+      entry: uv run pytest -q
+      language: system
+      pass_filenames: false
+      types: [python]

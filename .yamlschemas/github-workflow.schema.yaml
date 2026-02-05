@@ -1,0 +1,27 @@
+name: str()
+run-name: str(required=False)
+on: include('on_condition', required=False)
+jobs: map(include('job'), key=str())
+env: map(str(), key=str(), required=False)
+permissions:
+  contents: str()
+---
+job:
+  runs-on: str()
+  steps: list(include('step'))
+  needs: list(str(), required=False)
+  environment: include('environment', required=False)
+  permissions: map(str(), key=str(), required=False)
+step:
+  uses: str(required=False)
+  name: str(required=False)
+  with: any(required=False)
+  run: str(required=False)
+  if: str(required=False)
+on_condition:
+  release: include('release', required=False)
+release:
+  types: list(str())
+environment:
+  name: str()
+  url: str()

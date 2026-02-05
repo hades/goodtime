@@ -8,26 +8,26 @@ import os
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'goodtime'
-copyright = '2026, The goodtime developers'
-author = 'The goodtime developers'
+project = "goodtime"
+copyright = "2026, The goodtime developers"
+author = "The goodtime developers"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-  'sphinx.ext.autodoc',
+  "sphinx.ext.autodoc",
 ]
 
-templates_path = ['_templates']
-exclude_patterns = []
+templates_path = ["_templates"]
+exclude_patterns: list[str] = []
 
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
-html_static_path = ['_static']
+html_theme = "alabaster"
+html_static_path = ["_static"]
 
 html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")

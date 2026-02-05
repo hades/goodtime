@@ -12,7 +12,7 @@ class Duration:
 
   The Duration values can be constructed using factory functions (from_nanos,
   from_micros, from_millis and from_seconds) and can be used for unit
-  arithmetics, e.g.  adding or subtracting from each other and to/from the
+  arithmetic, e.g.  adding or subtracting from each other and to/from the
   Instant values.
 
   Unlike SignedDuration, the length of time is always non-negative. It is therefore
@@ -101,14 +101,14 @@ class SignedDuration:
 
   The SignedDuration values can be constructed using factory functions (from_nanos,
   from_micros, from_millis and from_seconds) or convenience helper functions
-  (hours, minutes, seconds, etc.) and can be used for unit arithmetics, e.g.
+  (hours, minutes, seconds, etc.) and can be used for unit arithmetic, e.g.
   adding or subtracting from each other and to/from the Instant values.
 
   Do not use SignedDuration constructor directly. SignedDuration is meant as a
   union type, and may be updated in the future to prevent incorrect usage.
 
   Unlike Duration, the length of time can be negative. This makes it useful for
-  unit arithmetics, while simultaneously preventing the user from accidentally
+  unit arithmetic, while simultaneously preventing the user from accidentally
   using a negative duration where it does not make sense, such as timeouts.
 
   To extract Duration from SignedDuration, check whether your value is an

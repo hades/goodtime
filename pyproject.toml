@@ -53,6 +53,9 @@ ignore = [
   "PLR",
   "S",
 ]
+"docs/**" = [
+  "ALL",
+]
 
 [tool.ruff.lint.flake8-annotations]
 mypy-init-return = true

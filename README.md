@@ -13,7 +13,7 @@ Instant(unix_timestamp_ns=1770029824000000000)
 ```
 
 Handling of timestamps, durations and human-readable dates and times is
-notoriously error-prone due to issues with time zones, ambiguous arithmetics,
+notoriously error-prone due to issues with time zones, ambiguous arithmetic,
 ambiguous units, etc. This is especially true in distributed systems, where
 interacting systems may be written by multiple teams that did not have shared
 assumptions about date/time semantics.

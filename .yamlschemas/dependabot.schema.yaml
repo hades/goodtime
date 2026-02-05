@@ -1,0 +1,8 @@
+version: int()
+updates: list(include('update'))
+---
+update:
+  package-ecosystem: str()
+  directory: str()
+  schedule:
+    interval: str()

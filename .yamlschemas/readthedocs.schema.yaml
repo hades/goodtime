@@ -1,0 +1,10 @@
+version: int()
+build:
+  os: str()
+  tools: map(str(), key=str())
+  jobs: map(include('job'), key=str())
+
+sphinx:
+  configuration: str()
+---
+job: list(str())
