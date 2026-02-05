@@ -19,6 +19,11 @@ build-backend = "flit_core.buildapi"
 [project.urls]
 Home = "https://github.com/hades/goodtime"
 
+[project.optional-dependencies]
+tzdata = [
+    "tzdata>=2025.3",
+]
+
 [dependency-groups]
 dev = [
   "mypy>=1.19.1",
