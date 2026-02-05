@@ -37,7 +37,7 @@ or Duration.to_seconds) will round towards infinite past or negative infinite
 duration.
 """
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
 from ._civil_time import CivilSecond, CivilTime
 from ._duration import (
