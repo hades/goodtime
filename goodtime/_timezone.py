@@ -116,6 +116,20 @@ class Timezone:
       ).timestamp()
     )
     offsets: list[tuple[int, int]] = []
+    # This is a very slow algorithm. Improvements can be made, however the
+    # underlying issue is that the Python's tzinfo type is extremely abstract.
+    # Consider the following equation of time zones:
+    #
+    #   T_local - T_utc = offset(T_utc)
+    #
+    # Solving it for T_utc is impossible for arbitrary function offset(t). We
+    # therefore need to make a certain set of assumptions about the behaviour of
+    # offset(t), and the more assumptions we make, the better the algorithm to
+    # solve this equation can be.
+    #
+    # In reality, the structure of offset(t) is very well known and admits much
+    # more efficient solutions. Unfortunately, Python does not expose this
+    # structure in the tzinfo class.
     for ts in range(utc_ts - 38 * 3600, utc_ts + 38 * 3600):
       offset_td = datetime.datetime.fromtimestamp(ts, tz=self.tzinfo).utcoffset()
       if not offset_td:
