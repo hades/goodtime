@@ -2,7 +2,7 @@
 
 import dataclasses
 import datetime
-from typing import final
+from typing import final, overload
 
 from ._duration import Duration
 
@@ -89,6 +89,27 @@ class CivilSecond:
   def second(self) -> int:
     """Return the second field of this civil time as int (0-59)."""
     return self.dt.second
+
+  def __add__(self, other: int) -> "CivilSecond":
+    if not isinstance(other, int):
+      return NotImplemented
+    return CivilSecond(dt=self.dt + datetime.timedelta(seconds=other))
+
+  def __radd__(self, other: int) -> "CivilSecond":
+    return self.__add__(other)
+
+  @overload
+  def __sub__(self, other: int) -> "CivilSecond": ...
+
+  @overload
+  def __sub__(self, other: "CivilSecond") -> int: ...
+
+  def __sub__(self, other: "int|CivilSecond") -> "int|CivilSecond":
+    if isinstance(other, int):
+      return CivilSecond(dt=self.dt - datetime.timedelta(seconds=other))
+    if isinstance(other, CivilSecond):
+      return int((other.dt - self.dt).total_seconds())
+    return NotImplemented
 
 
 @final
