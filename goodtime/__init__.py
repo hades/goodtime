@@ -7,7 +7,8 @@ The core types are Instant (representing a fixed absolute point in time on
 Earth), Duration (representing a length of time) and CivilTime (representing
 local time as used by humans).
 
-## Design
+Design
+------
 
 The first thing to understand about how **goodtime** handles time is that the
 "absolute time" and "civil time" are explicitly treated as completely different
@@ -28,7 +29,8 @@ communication and computing, but there is no way to avoid it, as most humans
 understand their civil time much better than global absolute time, and mostly
 use civil time to organise their life.
 
-## Truncation
+Truncation
+----------
 
 Operations that truncate the precision of values (e.g. Instant.to_unix_seconds
 or Duration.to_seconds) will round towards infinite past or negative infinite
