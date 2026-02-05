@@ -1,0 +1,42 @@
+# schema: github-workflow
+
+name: check-pre-commit-hooks
+run-name: checking pre-commit hooks
+on:
+  push:
+  pull_request:
+env:
+  TMPDIR: ${{ github.workspace }}
+jobs:
+  check-pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - name: Set up Python
+        run: uv python install 3.10
+      - uses: pre-commit/action@v3.0.1
+      - uses: pre-commit-ci/lite-action@v1.1.0
+        if: always()
+  check-tests-py314:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - name: Set up Python
+        run: uv python install 3.14
+      - name: Run mypy
+        run: uv run mypy goodtime tests
+      - name: Run pytest
+        run: uv run pytest -q
+  check-tests-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - name: Set up Python
+        run: uv python install 3.10
+      - name: Run mypy
+        run: uv run mypy goodtime tests
+      - name: Run pytest
+        run: uv run pytest -q

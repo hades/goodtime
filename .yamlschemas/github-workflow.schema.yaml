@@ -3,8 +3,7 @@ run-name: str(required=False)
 on: include('on_condition', required=False)
 jobs: map(include('job'), key=str())
 env: map(str(), key=str(), required=False)
-permissions:
-  contents: str()
+permissions: include('permissions', required=False)
 ---
 job:
   runs-on: str()
@@ -20,8 +19,12 @@ step:
   if: str(required=False)
 on_condition:
   release: include('release', required=False)
+  push: map(str(), key=str(), required=False)
+  pull_request: map(str(), key=str(), required=False)
 release:
   types: list(str())
 environment:
   name: str()
   url: str()
+permissions:
+  contents: str()
